@@ -1,0 +1,208 @@
+<body style="background-color: #121a24">
+    <div class="row gx-0" style=" height: 30px;">
+        <div class="col-md-12">
+          <p style="float: right; margin-right: 50px ; color: rgb(228, 228, 228);">Loja de jogos da Arco 2022</p> 
+        </div>
+    </div>
+    <div class="title">
+        <h3 class="d-flex justify-content-center text-white">Destaques</h3>
+    </div>
+<div class="container-fluid py-4 d-flex justify-content-center" style="width: 60%;">   
+    <div class="row d-flex flex-wrap">
+        <div *ngFor="let game of games; let i = index " class="col-md-4 justify-content-center d-flex my-2">
+            <div class="card" style="width: 15rem;">
+                <img class="card-img-top img-fluid" src="{{game.url}}" alt="Card image cap" style="height: 200px;">
+                    <div class="card-body bg-dark">
+                      <h5 class="card-title text-white">{{game.title}}</h5>
+                      <p class="card-text text-white">{{game.description}}</p>
+                      <a href="#" class="btn btn-outline-primary" style="float: right;" (click)="openModal(template,game)">Adquirir</a>
+                     </div>
+              </div>  
+        </div>
+        
+    </div>
+</div>
+<!-----------------------------------------------------Modal---------------------------------------------------->
+<ng-template #template>
+    <div class="modal-header" style="background-color: #171a21;">
+       <h4 class="modal-title pull-left text-white">Game</h4>
+          <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+             <span aria-hidden="true" class="visually-hidden">&times;</span>
+          </button>
+    </div>
+        <div class="modal-body imgUrl d-flex justify-content-center py-4 px-4" style="background-color: #121a24;">
+          <div class="row">
+            <img src="{{jogo.url}}" class="img-fluid" alt="">
+          </div>
+        </div>
+     <div class="modal-body d-flex text-white" style="background-color: #121a24;">
+         <P>Valor: {{jogo.preco | currency}}</P>
+    </div>
+        <div class="modal-body d-flex text-white" style="background-color: #121a24;">
+              <p>Data de lançamento:{{jogo.data}}</p>
+        </div>
+        <div class="modal-body d-flex text-white" style="background-color: #121a24;">
+              <p>Origem: Steam</p>
+        </div>
+        <div class="modal-body d-flex text-white" style="background-color: #121a24;">
+              <p>Modo de pagamento</p>
+        </div>
+
+ <div class="modal-body d-flex text-white" style="background-color: #121a24;">
+
+    <button class="btn btn-outline-primary colorBlue mx-1" tooltip = "Cartão de crédito" (click)="openModal(templateCredit,'')">
+        <span class="material-icons colorBlue">
+          credit_card
+        </span>
+    </button>
+    <button class="btn btn-outline-primary 2 mx-1" tooltip = "Vale presente"  (click)="openModal(templatePresent,'')">
+         <span class="material-icons colorBlue">
+          card_giftcard
+        </span>
+    </button>
+    <button class="btn btn-outline-primary 2 mx-1" tooltip = "Pix" (click)="openModal(templatePix,'')">
+         <span class="material-icons colorBlue">
+          pix
+        </span>
+    </button>
+</div>
+</ng-template>
+
+
+<!---------------------------------------------------------------Credito------------>
+
+<ng-template #templateCredit>
+  <div class="modal-header" style="background-color: #171a21;">
+     <h4 class="modal-title pull-left text-white">{{jogo.title}}</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+           <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+  </div>
+      <div class="modal-body d-flex justify-content-center py-4" style="background-color: #121a24;">
+        <div class="row">
+          <img src="{{jogo.url}}" class="img-fluid py-4 px-4" alt="">
+        </div>
+      </div>
+ 
+<div class="modal-body d-flex text-white" style="background-color: #121a24;">
+    <div class="row mb-2" style="width:100%">
+       <div class="col-md-8">
+           <div class="form-group">
+              <label for="exampleInputEmail1">Nome do titular</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nome do titular">
+           </div>
+        </div>
+     </div> 
+</div>
+<div class="modal-body d-flex text-white" style="background-color: #121a24;">
+    <div class="row mb-2" style="width:100%">
+      <div class="col-md-8">
+          <div class="form-group">
+            <label>Número do Cartão</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Número do cartão">
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-body d-flex text-white" style="background-color: #121a24;">
+    <div class="row mb-2" style="width:100%">
+      <div class="col-md-8">
+          <div class="form-group">
+            <label>Validade</label>
+                <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Validade">
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-body d-flex text-white" style="background-color: #121a24;">
+    <div class="row mb-5" style="width:100%">
+      <div class="col-md-8">
+          <div class="form-group">
+            <label>CVV</label>
+                <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Senha">
+          </div>
+      </div>
+    </div>
+  </div>
+      <div class="modal-body ButonModal d-flex text-white" style="background-color: #121a24;">
+         <a type="button" class="btn btn-primary btn-lg btn-block" href="https://www.linkedin.com/in/leonay-santhiel-luciano-4878211a5/">Confirmar</a>
+      </div>
+</ng-template>
+
+<!------------------------------------------------------Vale Presente------------------------------------------------->
+<ng-template #templatePresent>
+  <div class="modal-header" style="background-color: #171a21;">
+     <h4 class="modal-title pull-left text-white">{{jogo.title}}</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+           <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+  </div>
+      <div class="modal-body d-flex justify-content-center py-4" style="background-color: #121a24;">
+        <div class="row">
+          <img src="{{jogo.url}}" class="img-fluid py-4 px-4" alt="">
+        </div>
+      </div>
+
+    <div class="modal-body d-flex text-white" style="background-color: #121a24;">
+        <div class="row mb-2" style="width:100%">
+          <div class="col-md-8">
+              <div class="form-group">
+                <label>Código de presente</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Código do cartão">
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body d-flex text-white" style="background-color: #121a24;">
+        <div class="row mb-5" style="width:100%">
+          <div class="col-md-8">
+              <div class="form-group">
+                <label>Validade</label>
+                    <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Validade">
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body ButonModal d-flex text-white" style="background-color: #121a24;">
+        <a type="button" class="btn btn-primary btn-lg btn-block" href="https://www.linkedin.com/in/leonay-santhiel-luciano-4878211a5/">Confirmar</a>
+     </div>
+</ng-template>
+<!--------------------------------------------------------Pix---------------------------------->
+<ng-template #templatePix>
+  <div class="modal-header" style="background-color: #171a21;">
+     <h4 class="modal-title pull-left text-white">Game</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+           <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+  </div>
+      <div class="modal-body d-flex justify-content-center py-4" style="background-color: #121a24;">
+        <div class="row">
+          <img src="{{jogo.url}}" class="img-fluid py-4 px-4" alt="">
+        </div>
+      </div>
+
+    <div class="modal-body d-flex text-white" style="background-color: #121a24;">
+        <div class="row mb-2" style="width:100%">
+          <div class="col-md-12 d-flex justify-content-center">
+              <img src="/assets/pix.jpeg" class="img-fluid pix " alt="">
+          </div>
+        </div>
+      </div>
+      <div class="modal-body d-flex text-white" style="background-color: #121a24;">
+        <div class="row mb-5" style="width:100%">
+          <div class="col-md-8">
+        <a href="https://nubank.com.br/pagar/b0dkk/AkChLSHiTF"> Redirecionar </a>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body d-flex text-white" style="background-color: #121a24;">
+    <div class="col-md-12 d-flex justify-content-center">
+      <p> Chave pix:  85d8e427-f559-4873-afae-ed40dca521c2 </p>
+    </div> 
+    </div>
+      <div class="modal-body ButonModal d-flex text-white" style="background-color: #121a24;">
+        <a type="button" class="btn btn-primary btn-lg btn-block" href="https://www.linkedin.com/in/leonay-santhiel-luciano-4878211a5/">Confirmar</a>
+     </div>
+</ng-template>
+</body>
+
